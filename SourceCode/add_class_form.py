@@ -8,35 +8,33 @@ class AddClassForm(Toplevel):
         self.title("Thêm lớp học")
         self.geometry("800x600")
         self.config(bg="green")
-
         self.db_connection = db_connection
         self.callback = callback
 
         label_name = Label(self, text="Tên lớp:")
-        label_name.grid(row=1, column=0, padx=10, pady=10)
         label_name.config(bg="white",fg="green")
+        label_name.grid(row=1, column=0, padx=10, pady=10)
         self.entry_name = Entry(self, width=30)
         self.entry_name.grid(row=1, column=1, padx=10, pady=10)
 
         label_gvcn = Label(self, text="Giáo viên chủ nhiệm:")
-        label_gvcn.config(bg="white", fg="green")
+        label_gvcn.config(bg="white",fg="green")
         label_gvcn.grid(row=2, column=0, padx=10, pady=10)
         self.entry_gvcn = Entry(self, width=30)
         self.entry_gvcn.grid(row=2, column=1, padx=10, pady=10)
-
-        button_save = Button(self, text="Thêm lớp", command=self.save_class)
-        button_save.config(bg="white",fg="green")
-        button_save.grid(row=3, column=0, columnspan=2, pady=10)
-
         self.tree = ttk.Treeview(self, columns=("ID", "TenLop", "GVCN"), show="headings")
         self.tree.heading("ID", text="ID")
         self.tree.heading("TenLop", text="Tên lớp")
         self.tree.heading("GVCN", text="Giáo viên chủ nhiệm")
         self.tree.grid(row=4, column=0, columnspan=2, pady=10, sticky='nsew')
 
+        button_save = Button(self, text="Thêm lớp", command=self.save_class)
+        button_save.config(bg="white",fg="green")
+        button_save.grid(row=5, column=0, columnspan=1, pady=10)
+
         button_edit = Button(self, text="Sửa lớp", command=self.edit_class)
         button_edit.config(bg="white",fg="green")
-        button_edit.grid(row=5, column=0, pady=10)
+        button_edit.grid(row=5, column=0,columnspan=2, pady=10)
 
         button_delete = Button(self, text="Xóa lớp", command=self.delete_class)
         button_delete.config(bg="white",fg="green")

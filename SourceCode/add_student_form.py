@@ -8,59 +8,80 @@ class AddStudentForm(Toplevel):
         super().__init__(parent)
         self.title("Thêm học sinh")
         self.geometry("1280x720")
-        self.config(bg="Orange")
+        self.config(bg="green")
         self.db_connection = db_connection
         self.callback = callback
-        Label(self, text="Họ và tên:", bg="white", fg="orange").grid(row=0, column=0, padx=10, pady=10)
+
+        label_name = Label(self, text="Họ và tên:")
+        label_name.config(bg="white",fg="green")
+        label_name.grid(row=0, column=0, padx=10, pady=10)
         self.entry_name = Entry(self, width=30)
         self.entry_name.grid(row=0, column=1, padx=10, pady=10)
-        Label(self, text="Ngày sinh (YYYY-MM-DD):", bg="white", fg="orange").grid(row=1, column=0, padx=10, pady=10)
+
+        label_ngaysinh = Label(self, text="Ngày sinh (YYYY-MM-DD):")
+        label_ngaysinh.config(bg="white",fg="green")
+        label_ngaysinh.grid(row=1, column=0, padx=10, pady=10)
         self.entry_ngaysinh = Entry(self, width=30)
         self.entry_ngaysinh.grid(row=1, column=1, padx=10, pady=10)
-        Label(self, text="Giới tính:", bg="white", fg="orange").grid(row=2, column=0, padx=10, pady=10)
+
+        label_gioitinh = Label(self, text="Giới tính:")
+        label_gioitinh.config(bg="white",fg="green")
+        label_gioitinh.grid(row=2, column=0, padx=10, pady=10)
         self.gioitinh_var = StringVar(self)
         self.gioitinh_var.set("Nam")
-        self.option_menu = Menubutton(self, textvariable=self.gioitinh_var, indicatoron=True, borderwidth=1, relief="raised")
-        self.option_menu.menu = Menu(self.option_menu, tearoff=0)
-        self.option_menu["menu"] = self.option_menu.menu
-        self.option_menu.menu.add_command(label="Nam", command=lambda: self.set_gioitinh("Nam", "blue"), background="lightblue")
-        self.option_menu.menu.add_command(label="Nữ", command=lambda: self.set_gioitinh("Nữ", "pink"), background="lightpink")
-        self.option_menu.grid(row=2, column=1, padx=10, pady=10)
-        Label(self, text="Địa chỉ:", bg="white", fg="orange").grid(row=3, column=0, padx=10, pady=10)
+        gioitinh_options = ["Nam", "Nữ"]
+        self.entry_gioitinh = OptionMenu(self, self.gioitinh_var, *gioitinh_options)
+        self.entry_gioitinh.grid(row=2, column=1, padx=10, pady=10)
+        label_diachi = Label(self, text="Địa chỉ:")
+        label_diachi.config(bg="white",fg="green")
+        label_diachi.grid(row=3, column=0, padx=10, pady=10)
         self.entry_diachi = Entry(self, width=30)
         self.entry_diachi.grid(row=3, column=1, padx=10, pady=10)
-        Label(self, text="Lớp:", bg="white", fg="orange").grid(row=4, column=0, padx=10, pady=10)
+
+        label_lop = Label(self, text="Lớp:")
+        label_lop.config(bg="white",fg="green")
+        label_lop.grid(row=4, column=0, padx=10, pady=10)
         self.entry_lop = Entry(self, width=30)
         self.entry_lop.grid(row=4, column=1, padx=10, pady=10)
-        Button(self, text="Thêm Học Sinh", bg="white", fg="orange", command=self.save_student).grid(row=5, column=0, columnspan=2, padx=10, pady=20)
-        Button(self, text="Sửa Học Sinh", bg="white", fg="orange", command=self.edit_student).grid(row=6, column=0, padx=10, pady=10)
-        Button(self, text="Xóa Học Sinh ", bg="white", fg="orange", command=self.delete_student).grid(row=6, column=1, padx=10, pady=10)
-        Button(self, text="Thoát", bg="white", fg="orange", command=self.close_form).grid(row=7, column=0, columnspan=2, padx=10, pady=10)
-        self.tree = ttk.Treeview(self, columns=("ID", "HoTen", "NgaySinh", "GioiTinh", "DiaChi", "Lop"), show="headings", height=15)
+
+        button_save = Button(self, text="Lưu", command=self.save_student)
+        button_save.config(bg="white",fg="green")
+        button_save.grid(row=5, column=0, columnspan=2, padx=10, pady=20)
+
+        button_edit = Button(self, text="Sửa", command=self.edit_student)
+        button_edit.config(bg="white",fg="green")
+        button_edit.grid(row=6, column=0, padx=10, pady=10)
+
+        button_delete = Button(self, text="Xóa", command=self.delete_student)
+        button_delete.config(bg="white",fg="green")
+        button_delete.grid(row=6, column=1, padx=10, pady=10)
+
+        button_logout = Button(self, text="Thoát", command=self.close_form)
+        button_logout.config(bg="white",fg="green")
+        button_logout.grid(row=7, column=0, columnspan=2, padx=10, pady=10)
+
+        self.tree = ttk.Treeview(self, columns=("ID", "HoTen", "NgaySinh", "GioiTinh", "DiaChi", "Lop"),
+                                 show="headings", height=15)
         self.tree.grid(row=0, column=2, rowspan=8, padx=10, pady=10, sticky=(N, S, W, E))
+
         scrollbar = ttk.Scrollbar(self, orient="vertical", command=self.tree.yview)
         scrollbar.grid(row=0, column=3, rowspan=8, sticky=(N, S, E))
         self.tree.configure(yscrollcommand=scrollbar.set)
+
         self.tree.heading("ID", text="ID")
         self.tree.heading("HoTen", text="Họ và tên")
         self.tree.heading("NgaySinh", text="Ngày sinh")
         self.tree.heading("GioiTinh", text="Giới tính")
         self.tree.heading("DiaChi", text="Địa chỉ")
         self.tree.heading("Lop", text="Lớp")
+
         self.load_students()
-    def set_gioitinh(self, value, color):
-        self.gioitinh_var.set(value)
-        self.option_menu.config(bg=color)
+
     def load_students(self):
         try:
             self.tree.delete(*self.tree.get_children())
             cursor = self.db_connection.cursor()
-            query = """
-            SELECT HocSinh.ID, HocSinh.HoTen, HocSinh.NgaySinh, HocSinh.GioiTinh, HocSinh.DiaChi, Lop.TenLop 
-            FROM HocSinh 
-            JOIN Lop ON HocSinh.LopID = Lop.ID
-            """
-            cursor.execute(query)
+            cursor.execute("SELECT HocSinh.ID, HocSinh.HoTen, HocSinh.NgaySinh, HocSinh.GioiTinh, HocSinh.DiaChi, Lop.TenLop FROM HocSinh JOIN Lop ON HocSinh.LopID = Lop.ID")
             students = cursor.fetchall()
             for student in students:
                 self.tree.insert("", "end", values=student)
@@ -99,16 +120,20 @@ class AddStudentForm(Toplevel):
         if not selected_item:
             messagebox.showerror("Lỗi", "Vui lòng chọn học sinh để sửa.")
             return
-        item = self.tree.item(selected_item[0])
+
+        item = self.tree.item(selected_item)
         student_id = item["values"][0]
+
         try:
             cursor = self.db_connection.cursor()
             cursor.execute("SELECT HoTen, NgaySinh, GioiTinh, DiaChi, LopID FROM HocSinh WHERE ID = %s", (student_id,))
             student_details = cursor.fetchone()
+
             if student_details:
                 edit_dialog = Toplevel(self)
                 edit_dialog.title("Sửa thông tin học sinh")
                 edit_dialog.geometry("400x300")
+
                 Label(edit_dialog, text="Họ và tên:").grid(row=0, column=0, padx=10, pady=5)
                 entry_name = Entry(edit_dialog, width=30)
                 entry_name.insert(0, student_details[0])
@@ -122,15 +147,9 @@ class AddStudentForm(Toplevel):
                 Label(edit_dialog, text="Giới tính:").grid(row=2, column=0, padx=10, pady=5)
                 gioitinh_var = StringVar(edit_dialog)
                 gioitinh_var.set(student_details[2])
-
-                edit_option_menu = Menubutton(edit_dialog, textvariable=gioitinh_var, indicatoron=True, borderwidth=1, relief="raised")
-                edit_option_menu.menu = Menu(edit_option_menu, tearoff=0)
-                edit_option_menu["menu"] = edit_option_menu.menu
-
-                edit_option_menu.menu.add_command(label="Nam", command=lambda: self.set_gioitinh_edit(gioitinh_var, "Nam", edit_option_menu, "blue"), background="lightblue")
-                edit_option_menu.menu.add_command(label="Nữ", command=lambda: self.set_gioitinh_edit(gioitinh_var, "Nữ", edit_option_menu, "pink"), background="lightpink")
-
-                edit_option_menu.grid(row=2, column=1, padx=10, pady=5)
+                gioitinh_options = ["Nam", "Nữ"]
+                entry_gioitinh = OptionMenu(edit_dialog, gioitinh_var, *gioitinh_options)
+                entry_gioitinh.grid(row=2, column=1, padx=10, pady=5)
 
                 Label(edit_dialog, text="Địa chỉ:").grid(row=3, column=0, padx=10, pady=5)
                 entry_diachi = Entry(edit_dialog, width=30)
@@ -170,22 +189,21 @@ class AddStudentForm(Toplevel):
                             messagebox.showerror("Lỗi", f"Lỗi: {err}")
                     else:
                         messagebox.showerror("Lỗi", "Vui lòng nhập đầy đủ thông tin học sinh.")
+
                 Button(edit_dialog, text="Lưu", command=save_changes).grid(row=5, column=0, columnspan=2, padx=10, pady=10)
             else:
                 messagebox.showerror("Lỗi", "Không tìm thấy thông tin học sinh.")
         except mysql.connector.Error as err:
             messagebox.showerror("Lỗi", f"Lỗi: {err}")
-    def set_gioitinh_edit(self, var, value, menu_button, color):
-        var.set(value)
-        menu_button.config(bg=color)
 
     def delete_student(self):
         selected_item = self.tree.selection()
         if not selected_item:
             messagebox.showerror("Lỗi", "Vui lòng chọn học sinh để xóa.")
             return
+
         if messagebox.askyesno("Xác nhận xóa", "Bạn có chắc muốn xóa học sinh này?"):
-            item = self.tree.item(selected_item[0])
+            item = self.tree.item(selected_item)
             student_id = item["values"][0]
 
             try:
