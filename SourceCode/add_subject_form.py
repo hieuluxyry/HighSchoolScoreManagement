@@ -7,35 +7,35 @@ class AddSubjectForm(Toplevel):
         super().__init__(parent)
         self.title("Thêm môn học")
         self.geometry("800x600")
-        self.config(bg="yellow")
+        self.config(bg="purple")
         self.db_connection = db_connection
         self.callback = callback
 
         label_name = Label(self, text="Tên môn học:")
-        label_name.config(bg="white",fg="yellow")
+        label_name.config(bg="white",fg="red")
         label_name.grid(row=1, column=0, padx=10, pady=10)
         self.entry_name = Entry(self, width=30)
         self.entry_name.grid(row=1, column=1, padx=10, pady=10)
 
         button_save = Button(self, text="Thêm môn học", command=self.save_subject)
-        button_save.config(bg="white",fg="yellow")
-        button_save.grid(row=2, column=0, columnspan=2, pady=10)
+        button_save.config(bg="white",fg="red")
+        button_save.grid(row=4, column=1, columnspan=2, pady=10)
         self.tree = ttk.Treeview(self, columns=("ID", "TenMonHoc"), show="headings")
         self.tree.heading("ID", text="ID")
         self.tree.heading("TenMonHoc", text="Tên môn học")
-        self.tree.grid(row=3, column=0, columnspan=2, pady=10, sticky='nsew')
+        self.tree.grid(row=3, column=1, columnspan=2, pady=10, sticky='nsew')
 
         button_edit = Button(self, text="Sửa môn học", command=self.edit_subject)
-        button_edit.config(bg="white",fg="yellow")
-        button_edit.grid(row=4, column=0, pady=10)
+        button_edit.config(bg="white",fg="red")
+        button_edit.grid(row=4, column=2, pady=10)
 
         button_delete = Button(self, text="Xóa môn học", command=self.delete_subject)
-        button_delete.config(bg="white",fg="yellow")
-        button_delete.grid(row=4, column=1, pady=10)
+        button_delete.config(bg="white",fg="red")
+        button_delete.grid(row=4, column=5, pady=10)
 
         button_logout = Button(self, text="Thoát", command=self.close_form)
-        button_logout.config(bg="white",fg="yellow")
-        button_logout.grid(row=5, column=0, columnspan=2, padx=10, pady=10)
+        button_logout.config(bg="white",fg="red")
+        button_logout.grid(row=4, column=6, columnspan=2, padx=10, pady=10)
 
         self.load_subjects()
 

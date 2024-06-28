@@ -2,8 +2,8 @@ from tkinter import *
 from add_student_form import AddStudentForm
 from add_class_form import AddClassForm
 from add_subject_form import AddSubjectForm
-from add_score_form import AddScoreForm, ViewScoresForm
-from PIL import Image, ImageTk
+from add_score_form import AddScoreForm
+from ViewScoresForm import  ViewScoresForm
 class HomePage(Tk):
     def __init__(self, db_connection):
         super().__init__()
@@ -36,7 +36,7 @@ class HomePage(Tk):
         button_view_scores.config(bg="white",fg="blue")
 
         button_logout = Button(self, text="Đăng xuất", command=self.logout)
-        button_logout.place(x=20, y=500, width=100, height=25)
+        button_logout.place(x=20, y=250, width=100, height=25)
         button_logout.config(bg="white",fg="blue")
 
     def open_add_student_form(self):

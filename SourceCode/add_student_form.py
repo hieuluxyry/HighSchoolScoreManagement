@@ -32,9 +32,9 @@ class AddStudentForm(Toplevel):
         Label(self, text="Lớp:", bg="white", fg="orange").grid(row=4, column=0, padx=10, pady=10)
         self.entry_lop = Entry(self, width=30)
         self.entry_lop.grid(row=4, column=1, padx=10, pady=10)
-        Button(self, text="Lưu", bg="white", fg="orange", command=self.save_student).grid(row=5, column=0, columnspan=2, padx=10, pady=20)
-        Button(self, text="Sửa", bg="white", fg="orange", command=self.edit_student).grid(row=6, column=0, padx=10, pady=10)
-        Button(self, text="Xóa", bg="white", fg="orange", command=self.delete_student).grid(row=6, column=1, padx=10, pady=10)
+        Button(self, text="Thêm Học Sinh", bg="white", fg="orange", command=self.save_student).grid(row=5, column=0, columnspan=2, padx=10, pady=20)
+        Button(self, text="Sửa Học Sinh", bg="white", fg="orange", command=self.edit_student).grid(row=6, column=0, padx=10, pady=10)
+        Button(self, text="Xóa Học Sinh ", bg="white", fg="orange", command=self.delete_student).grid(row=6, column=1, padx=10, pady=10)
         Button(self, text="Thoát", bg="white", fg="orange", command=self.close_form).grid(row=7, column=0, columnspan=2, padx=10, pady=10)
         self.tree = ttk.Treeview(self, columns=("ID", "HoTen", "NgaySinh", "GioiTinh", "DiaChi", "Lop"), show="headings", height=15)
         self.tree.grid(row=0, column=2, rowspan=8, padx=10, pady=10, sticky=(N, S, W, E))
@@ -62,8 +62,6 @@ class AddStudentForm(Toplevel):
             """
             cursor.execute(query)
             students = cursor.fetchall()
-
-            # Insert data into the Treeview
             for student in students:
                 self.tree.insert("", "end", values=student)
         except mysql.connector.Error as err:
