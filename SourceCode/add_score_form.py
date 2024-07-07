@@ -7,7 +7,7 @@ class AddScoreForm(Toplevel):
         super().__init__(parent)
         self.title("Nhập điểm")
         self.geometry("1280x720")
-        self.config(bg="blue")
+        self.config(bg="green")
         self.db_connection = db_connection
         self.callback = callback
 
@@ -64,7 +64,7 @@ class AddScoreForm(Toplevel):
 
         button_logout = Button(self, text="Thoát", command=self.close_form)
         button_logout.config(bg="white",fg="red")
-        button_logout.grid(row=8, column=0, columnspan=2, padx=10, pady=10)
+        button_logout.grid(row=7, column=4, columnspan=1, padx=10, pady=10)
 
         self.load_data()
 
@@ -223,7 +223,7 @@ class ViewScoresForm(Toplevel):
         super().__init__(parent)
         self.title("Xem điểm")
         self.geometry("1280x720")
-        self.config(bg="blue")
+        self.config(bg="green")
         self.db_connection = db_connection
         self.callback = callback
 

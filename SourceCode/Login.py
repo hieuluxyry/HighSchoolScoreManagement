@@ -41,19 +41,19 @@ def on_closing():
 
 
 label_username = Label(window, text="Tên đăng nhập:")
-label_username.config(bg="white",fg="pink")
+label_username.config(bg="white",fg="red")
 label_username.pack(pady=5)
 entry_username = Entry(window)
 entry_username.pack(pady=5)
 
 label_password = Label(window, text="Mật khẩu:")
-label_password.config(bg="white",fg="pink")
+label_password.config(bg="white",fg="red")
 label_password.pack(pady=5)
 entry_password = Entry(window, show="*")
 entry_password.pack(pady=5)
 
 button_login = Button(window, text="Đăng nhập", command=validate_login)
-button_login.config(bg="white",fg="pink")
+button_login.config(bg="white",fg="red")
 button_login.pack(pady=10)
 
 window.mainloop()

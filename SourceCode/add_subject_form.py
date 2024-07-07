@@ -6,36 +6,38 @@ class AddSubjectForm(Toplevel):
     def __init__(self, parent, db_connection, callback):
         super().__init__(parent)
         self.title("Thêm môn học")
-        self.geometry("800x600")
-        self.config(bg="blue")
+        self.geometry("1280x720")
+        self.config(bg="green")
         self.db_connection = db_connection
         self.callback = callback
 
         label_name = Label(self, text="Tên môn học:")
-        label_name.config(bg="white",fg="red")
-        label_name.grid(row=1, column=0, padx=10, pady=10)
+        label_name.config(bg="#f0f0f0", fg="black")
+        label_name.grid(row=0, column=15, padx=10, pady=10, sticky="w")
+
         self.entry_name = Entry(self, width=30)
-        self.entry_name.grid(row=1, column=1, padx=10, pady=10)
+        self.entry_name.grid(row=0, column=16, padx=10, pady=10)
+
         self.tree = ttk.Treeview(self, columns=("ID", "TenMonHoc"), show="headings")
         self.tree.heading("ID", text="ID")
         self.tree.heading("TenMonHoc", text="Tên môn học")
-        self.tree.grid(row=3, column=0, columnspan=2, pady=10, sticky='nsew')
+        self.tree.grid(row=1, column=15, columnspan=2, pady=10, sticky='nsew')
 
         button_save = Button(self, text="Thêm môn học", command=self.save_subject)
-        button_save.config(bg="white",fg="red")
-        button_save.grid(row=4, column=0, columnspan=2, pady=10)
+        button_save.config(bg="blue", fg="white")
+        button_save.grid(row=2, column=13, padx=15, pady=15)
 
         button_edit = Button(self, text="Sửa môn học", command=self.edit_subject)
-        button_edit.config(bg="white",fg="red")
-        button_edit.grid(row=5, column=0, pady=10)
+        button_edit.config(bg="blue", fg="white")
+        button_edit.grid(row=2, column=14, padx=15, pady=15)
 
         button_delete = Button(self, text="Xóa môn học", command=self.delete_subject)
-        button_delete.config(bg="white",fg="red")
-        button_delete.grid(row=5, column=1, pady=10)
+        button_delete.config(bg="blue", fg="white")
+        button_delete.grid(row=2, column=15, padx=15, pady=15 )
 
         button_logout = Button(self, text="Thoát", command=self.close_form)
-        button_logout.config(bg="white",fg="red")
-        button_logout.grid(row=7, column=0, columnspan=2, padx=10, pady=10)
+        button_logout.config(bg="blue", fg="white")
+        button_logout.grid(row=2, column=16, padx=15, pady=15)
 
         self.load_subjects()
 
@@ -124,3 +126,4 @@ class AddSubjectForm(Toplevel):
         if self.callback:
             self.callback()
         self.destroy()
+

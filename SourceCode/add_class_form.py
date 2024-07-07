@@ -6,7 +6,7 @@ class AddClassForm(Toplevel):
     def __init__(self, parent, db_connection, callback=None):
         super().__init__(parent)
         self.title("Thêm lớp học")
-        self.geometry("800x600")
+        self.geometry("1280x720")
         self.config(bg="green")
         self.db_connection = db_connection
         self.callback = callback
@@ -30,19 +30,19 @@ class AddClassForm(Toplevel):
 
         button_save = Button(self, text="Thêm lớp", command=self.save_class)
         button_save.config(bg="white",fg="green")
-        button_save.grid(row=5, column=0, columnspan=1, pady=10)
+        button_save.grid(row=6, column=0, padx=5, pady=5)
 
         button_edit = Button(self, text="Sửa lớp", command=self.edit_class)
         button_edit.config(bg="white",fg="green")
-        button_edit.grid(row=5, column=0,columnspan=2, pady=10)
+        button_edit.grid(row=6, column=1, padx=5, pady=5)
 
         button_delete = Button(self, text="Xóa lớp", command=self.delete_class)
         button_delete.config(bg="white",fg="green")
-        button_delete.grid(row=5, column=1, pady=10)
+        button_delete.grid(row=7, column=0, padx=5, pady=5)
 
         button_logout = Button(self, text="Thoát", command=self.close_form)
         button_logout.config(bg="white",fg="green")
-        button_logout.grid(row=5, column=2, pady=10)
+        button_logout.grid(row=7, column=1, padx=5, pady=5)
 
         self.load_classes()
 
